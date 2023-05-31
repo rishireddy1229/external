@@ -1,0 +1,70 @@
+<style>
+label {
+  display: inline-block;
+  width: 150px;
+}
+</style>
+<h1 ALIGN="CENTER" >STUDENT MANAGEMENT SYSTEM</h1>
+<div class="wholeContainer" style="width:100%; display: flex;  ">
+  <br><br><br>
+  <div class="leftContainer" style="width:35%; margin-left: 15px;">
+    <br>
+    <div class="addProContainer" style="width: 500px;">
+        <b><label style="font-size:20px;">ENTER DETAILS</label></b>
+      <form #studentsPost="ngForm" (ngSubmit)="addStudents(studentsPost.value)"  >
+        <br><br>
+         <b><label>ID</label> </b><input type="text" name="_id"  placeholder="Enter your id" ngModel />
+          <br><br>
+        
+          <b><label>NAME</label></b> <input type="text" name="name" placeholder="Enter your name" ngModel />
+          <br><br>
+        
+          <b><label>ROLL_NO</label></b>  <input type="text" name="rollno" placeholder="Enter your rollno" ngModel />
+         <br><br>
+          <b><label>PHONE_NO</label> </b> <input type="text" name="phone" placeholder="Enter your phone_no" ngModel />
+         <br><br>
+       
+          <b><label>EMAIL</label> </b><input type="text" name="email" placeholder="Enter your email_id" ngModel />
+          <br><br>
+          <b><label>DEPARTMENT</label> </b> <input type="text" name="branch" placeholder="Enter your department" ngModel />
+         <br><br>
+        <button type="submit">{{editMode? 'Edit Student': 'Add Student'}}</button>
+      </form>
+    </div>
+
+  </div>
+  <br>
+  <div class="rightContainer" style="width: 70%;margin-right: 10px;">
+    <br>
+    <button type="button" (click)="loadStudents()">STUDENTS LIST</button>
+    <br><br>
+    <table class="table table-bordered" align="center" >
+      <thead style="border: 1px solid black;">
+        <tr align="center">
+          <th scope="col" style="border: 1px solid black;">ID</th>
+          <th scope="col" style="border: 1px solid black;">NAME</th>
+          <th scope="col" style="border: 1px solid black;">ROLL NUMBER</th>
+          <th scope="col" style="border: 1px solid black;">PHONE</th>
+          <th scope="col" style="border: 1px solid black;">EMAIL</th>
+          <th scope="col" style="border: 1px solid black;">DEPARTMENT</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr scope="row" *ngFor="let s of students">
+          <td style="border: 1px solid black;">{{s._id}}</td>
+          <td style="border: 1px solid black;">{{s.name}}</td>
+          <td style="border: 1px solid black;">{{s.rollno}}</td>
+          <td style="border: 1px solid black;">{{s.phone}}</td>
+          <td style="border: 1px solid black;">{{s.email}}</td>
+          <td style="border: 1px solid black;">{{s.branch}}</td>
+          <td style="border: 1px solid black;"><button type="button"  (click)="editStudents(s._id)">Update</button>
+          </td>
+          <td style="border: 1px solid black;"><button type="button"  (click)="deleteStudents(s._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
